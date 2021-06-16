@@ -2,11 +2,47 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppBlaBlaCar.Views.RidesView">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Text="+"
+            Command="{Binding NewRideCommand}">
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to RIDES!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="GASOLINERAS" XAlign="Center" FontSize="Large" Margin="0,0,5,0"/>
+            <CollectionView
+                    x:Name="FuelStationsList"
+                    ItemsSource="{Binding Ride}"
+                    SelectedItem="{Binding RideSelected}"
+                    SelectionMode="Single"
+                    Margin="15"
+                    >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="Gray"
+                                       CornerRadius="5"
+                                       HasShadow="True">
+                            <StackLayout Orientation="Horizontal"
+                                         Grid.Column="5">
+                                      
+                                <Image
+                                            HeightRequest="100"
+                                            WidthRequest="300"
+                                            Source="{Binding Picture}"/>
+                                <Label
+                                            Text="{Binding Name}"
+                                            FontAttributes="Bold"
+                                            XAlign="Center"/>
+                                <Label
+                                            Text="{Binding DestinationStr}"
+                                            XAlign="Center"/>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
