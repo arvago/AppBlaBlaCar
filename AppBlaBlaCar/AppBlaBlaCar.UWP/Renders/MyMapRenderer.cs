@@ -82,7 +82,7 @@ namespace AppBlaBlaCar.UWP.Renders
                 var mapIconDes = new MapIcon();
                 mapIconDes.Image = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///pin.png"));
                 mapIconDes.CollisionBehaviorDesired = MapElementCollisionBehavior.RemainVisible;
-                mapIconDes.Location = pointOrg;
+                mapIconDes.Location = pointDes;
                 mapIconDes.NormalizedAnchorPoint = new Windows.Foundation.Point(0.5, 1.0);
 
                 NativeMap.MapElements.Add(mapIconOrg);

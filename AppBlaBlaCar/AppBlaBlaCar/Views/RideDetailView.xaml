@@ -1,12 +1,87 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppBlaBlaCar.Views.RideDetailView">
-    <ContentPage.Content>
+             xmlns:triggers="clr-namespace:AppBlaBlaCar.Triggers"
+             x:Class="AppBlaBlaCar.Views.RideDetailView"
+             Title="Detalle del Viaje">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Eliminar" Command="{Binding DeleteCommand}"/>
+        <ToolbarItem Text="Guardar" Command="{Binding SaveCommand}"/>
+        <ToolbarItem Text="Mapa" Command="{Binding MapCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <ScrollView>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label Text="INFORMACIÓN DE LA RUTA" XAlign="Center" FontSize="Large"/>
+            <Entry 
+                x:Name="txtOrigen"
+                Placeholder="Origen" 
+                Text="{Binding OriginName}"/>
+            <Entry 
+                    x:Name="txtOrigenLat"
+                    Placeholder="Latitud" 
+                    Text="{Binding LatitudeOrg}"/>
+            <Entry 
+                    x:Name="txtOrigenAlt"
+                    Placeholder="Longitud" 
+                    Text="{Binding LongitudeOrg}"/>
+            <Label Text="------------" XAlign="Center" FontSize="Default"/>
+            <Entry 
+                x:Name="txtDestino"
+                Placeholder="Destino" 
+                Text="{Binding DestinationName}"/>
+            <Entry 
+                    x:Name="txtOrigenLat"
+                    Placeholder="Latitud" 
+                    Text="{Binding LatitudeDes}"/>
+            <Entry 
+                    x:Name="txtOrigenAlt"
+                    Placeholder="Longitud" 
+                    Text="{Binding LongitudeDes}"/>
+            <Label Text="INFORMACIÓN DEL VIAJE" XAlign="Center" FontSize="Large"/>
+            <Label Text="Fecha" XAlign="Start" FontSize="Small"/>
+            <DatePicker x:Name="DatePicker" Date="{Binding Date}" Format="YYYY-MM-dd"></DatePicker>
+            <Label Text="Hora" XAlign="Start" FontSize="Small"/>
+            <TimePicker  x:Name="TimePicker" Time="{Binding Time}"/>
+            <Label Text="------------" XAlign="Center" FontSize="Default"/>
+            <Entry 
+                x:Name="txtPassengers"
+                Placeholder="Pasajeros" 
+                Keyboard="Numeric" 
+                Text="{Binding Passengers}">
+                <Entry.Triggers>
+                    <EventTrigger 
+                        Event="TextChanged">
+                        <triggers:PassengersTrigger/>
+                    </EventTrigger>
+                </Entry.Triggers>
+            </Entry>
+            <Stepper
+                 x:Name="stpPassengers"
+                Increment="1"
+                Minimum="1"
+                Maximum="20"
+                Value="{Binding Passengers}"/>
+            <Label Text="------------" XAlign="Center" FontSize="Default"/>
+            <Entry 
+                 x:Name="txtPrice"
+                Placeholder="Precio" 
+                Keyboard="Numeric" 
+                Text="{Binding Price}">
+                <Entry.Triggers>
+                    <EventTrigger 
+                        Event="TextChanged">
+                        <triggers:PriceTrigger/>
+                    </EventTrigger>
+                </Entry.Triggers>
+            </Entry>
+            <Stepper
+                 x:Name="stpPrice"
+                Increment="1"
+                Minimum="1"
+                Maximum="20"
+                Value="{Binding Price}"/>            
         </StackLayout>
-    </ContentPage.Content>
+    </ScrollView>
 </ContentPage>
