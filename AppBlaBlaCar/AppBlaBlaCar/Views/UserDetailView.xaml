@@ -3,10 +3,56 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppBlaBlaCar.Views.UserDetailView">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to USER!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout Margin="15">
+                <Label Text="INFORMACIÓN USUARIO" XAlign="Center" FontSize="Large" Margin="7,0,0,0"/>
+                <Button
+                    Text="Seleccionar Fotografía"
+                    Command="{Binding SelectPictureCommand}"/>
+                <Label Text="INFORMACIÓN DEL USUARIO" XAlign="Center" FontSize="Large"/>
+                
+                <Label Text="IMAGEN" XAlign="Center" FontSize="Large" Margin="7,0,0,0"/>
+                <Image 
+                    HeightRequest="100"
+                    WidthRequest="200"
+                    Source="{Binding Picture}"/>
+                <Entry 
+                    Placeholder="Nombre del Usuario" 
+                    Text="{Binding UserSelected.Name}"/>
+                <Entry 
+                    Placeholder="Email" 
+                    Text="{Binding UserSelected.Email}"/>
+                <Entry 
+                    IsPassword="True"
+                    Placeholder="Password" 
+                    Text="{Binding UserSelected.Password}"/>
+
+                <Switch x:Name="DriverSwitch" />
+                <Label Text="Driver mode">
+                    <Label.Triggers>
+                        <DataTrigger TargetType="Driver"
+                     Binding="{Binding Source={x:Reference styleSwitch}, Path=IsToggled}"
+                     Value="true">
+                            <Setter Property="FontAttributes"
+                    Value="Italic, Bold" />
+                            <Setter Property="FontSize"
+                    Value="Large" />
+                        </DataTrigger>
+                    </Label.Triggers>
+                </Label>
+
+                <Label Text="UBICACIÓN" XAlign="Center" FontSize="Large" Margin="7,0,0,0"/>
+                <Entry 
+                    Placeholder="Latitud" 
+                    Text="{Binding Latitude}"/>
+                <Entry 
+                    Placeholder="Longitud" 
+                    Text="{Binding Longitude}"/>
+                <Button
+                    Text="Obtener Ubicación"
+                    Command="{Binding GetLocationCommand}"/>
+
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
