@@ -36,19 +36,25 @@ namespace AppBlaBlaCar.Droid.Renders
             if (e.NewElement != null)
             {
                 this.Ride = (e.NewElement as MyMap).Ride;
+                Control.GetMapAsync(this);
             }
 
         }
 
         protected override void OnMapReady(GoogleMap map)
         {
+            base.OnMapReady(map);
+            var polylineOptions = new PolylineOptions();
+            polylineOptions.InvokeColor(0x66FF0000);
             LatLng coorOrg = new LatLng(Ride.OriginLat, Ride.OriginAlt);
             LatLng coorDes = new LatLng(Ride.DestinationLat, Ride.DestinationAlt);
             map.AddMarker(new MarkerOptions().SetPosition(coorOrg).SetTitle($"Origen: {Ride.OriginStr}"));
             map.AddMarker(new MarkerOptions().SetPosition(coorDes).SetTitle($"Destino: {Ride.DestinationStr}"));
-            base.OnMapReady(map);
+            polylineOptions.Add(coorOrg);
+            polylineOptions.Add(coorDes);            
 
             NativeMap.SetInfoWindowAdapter(this);
+            NativeMap.AddPolyline(polylineOptions);
         }
 
         /*protected override MarkerOptions CreateMarker(Pin pin)
@@ -66,27 +72,24 @@ namespace AppBlaBlaCar.Droid.Renders
             var inflater = Android.App.Application.Context.GetSystemService(Context.LayoutInflaterService) as Android.Views.LayoutInflater;
             if (inflater != null)
             {
-                Android.Views.View viewOrg;
+                //Android.Views.View viewOrg;
                 Android.Views.View viewDes;
 
-                viewOrg = inflater.Inflate(Resource.Layout.MapWindowOrg, null);
+                //viewOrg = inflater.Inflate(Resource.Layout.MapWindowOrg, null);
                 viewDes = inflater.Inflate(Resource.Layout.MapWindowDes, null);
-                var infoNameOrg = viewOrg.FindViewById<TextView>(Resource.Id.MapWindowName);
+                //var infoNameOrg = viewOrg.FindViewById<TextView>(Resource.Id.MapWindowName);
                 var infoNameDes = viewDes.FindViewById<TextView>(Resource.Id.MapWindowName);
 
-                if ((infoNameOrg != null) || (infoNameDes != null))
+                if (/*(infoNameOrg != null) || */(infoNameDes != null))
                 {
-                    infoNameOrg.Text = Ride.OriginStr;
-                    infoNameOrg.Text = Ride.OriginStr;
+                    //infoNameOrg.Text = Ride.OriginStr;
+                    infoNameDes.Text = Ride.OriginStr;
                 }
-                return (viewOrg);
+                //return (viewOrg);
                 return (viewDes);
             }
             return null;
-        }
-
-        
-
+        }    
 
         public Android.Views.View GetInfoWindow(Marker marker)
         {
