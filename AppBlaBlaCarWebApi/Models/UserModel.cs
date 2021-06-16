@@ -25,7 +25,7 @@ namespace AppBlaBlaCarWebApi.Models
                 using (SqlConnection conn = new SqlConnection(ConnectionString))
                 {
                     conn.Open();
-                    string tsql = "SELECT * FROM User";
+                    string tsql = "SELECT * FROM Person";
                     using (SqlCommand cmd = new SqlCommand(tsql, conn))
                     {
                         using (SqlDataReader reader = cmd.ExecuteReader())
@@ -72,7 +72,7 @@ namespace AppBlaBlaCarWebApi.Models
                 using (SqlConnection conn = new SqlConnection(ConnectionString))
                 {
                     conn.Open();
-                    string tsql = "SELECT * FROM User WHERE IDUser = @IDUser;";
+                    string tsql = "SELECT * FROM Person WHERE IDUser = @IDUser;";
                     using (SqlCommand cmd = new SqlCommand(tsql, conn))
                     {
                         cmd.Parameters.AddWithValue("@IDUser", id);
@@ -119,7 +119,7 @@ namespace AppBlaBlaCarWebApi.Models
                 using (SqlConnection conn = new SqlConnection(ConnectionString))
                 {
                     conn.Open();
-                    string tsql = "INSERT INTO User (Name, Picture, Email, Password, Role) VALUES(@Name, @Picture, @Email, @Password, @Role); SELECT LAST_INSERT_ID();";
+                    string tsql = "INSERT INTO Person (Name, Picture, Email, Password, Role) VALUES(@Name, @Picture, @Email, @Password, @Role); SELECT LAST_INSERT_ID();";
                     using (SqlCommand cmd = new SqlCommand(tsql, conn))
                     {
                         cmd.CommandType = System.Data.CommandType.Text;
@@ -170,7 +170,7 @@ namespace AppBlaBlaCarWebApi.Models
                 using (SqlConnection conn = new SqlConnection(ConnectionString))
                 {
                     conn.Open();
-                    string tsql = "UPDATE User SET Name = @Name, Picture = @Picture, Email = @Email, Password = @Password, Role = @Role WHERE IDUser = @IDUser;";
+                    string tsql = "UPDATE Person SET Name = @Name, Picture = @Picture, Email = @Email, Password = @Password, Role = @Role WHERE IDUser = @IDUser;";
                     using (SqlCommand cmd = new SqlCommand(tsql, conn))
                     {
                         cmd.CommandType = System.Data.CommandType.Text;
@@ -209,7 +209,7 @@ namespace AppBlaBlaCarWebApi.Models
                 using (SqlConnection conn = new SqlConnection(ConnectionString))
                 {
                     conn.Open();
-                    string tsql = "DELETE FROM User WHERE IDUser = @IDUser;";
+                    string tsql = "DELETE FROM Person WHERE IDUser = @IDUser;";
                     using (SqlCommand cmd = new SqlCommand(tsql, conn))
                     {
                         cmd.CommandType = System.Data.CommandType.Text;
