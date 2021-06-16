@@ -3,10 +3,54 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppBlaBlaCar.Views.RideDetailView">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout Margin="15">
+                <Label Text="INFORMACIÓN DEL VIAJE" XAlign="Center" FontSize="Large" Margin="7,0,0,0"/>
+                <Label Text="IMAGEN" XAlign="Center" FontSize="Large" Margin="7,0,0,0"/>
+                <Button
+                    Text="Seleccionar Fotografía"
+                    Command="{Binding SelectPictureCommand}"/>
+
+                <Image 
+                    HeightRequest="100"
+                    WidthRequest="200"
+                    Source="{Binding Picture}"/>
+                <Entry 
+                    Placeholder="Nombre del Origen" 
+                    Text="{Binding RideSelected.OriginStr}"/>
+                <Entry 
+                    Placeholder="Nombre del Desino" 
+                    Text="{Binding RideSelected.DestinationStr}"/>
+                <Entry 
+                    Placeholder="Capacidad" 
+                    Text="{Binding UserSelected.Passengers}"/>
+                <Entry 
+                    Placeholder="Costo" 
+                    Text="{Binding UserSelected.Price}"/>
+                <DatePicker Date="{Binding UserSelected.Date}"/>
+                <Entry 
+                    IsPassword="True"
+                    Placeholder="Password" 
+                    Text="{Binding UserSelected.Password}"/>
+
+                <Label Text="UBICACIÓN" XAlign="Center" FontSize="Large" Margin="7,0,0,0"/>
+                <Entry 
+                    Placeholder="Latitud Origen" 
+                    Text="{Binding OriginLat}"/>
+                <Entry 
+                    Placeholder="Longitud Origen" 
+                    Text="{Binding OriginLong}"/>
+                <Entry 
+                    Placeholder="Latitud Destino" 
+                    Text="{Binding DestinationLat}"/>
+                <Entry 
+                    Placeholder="Longitud Destino" 
+                    Text="{Binding DestinationLong}"/>
+                <Button
+                    Text="Obtener Ubicación"
+                    Command="{Binding GetLocationCommand}"/>
+
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
