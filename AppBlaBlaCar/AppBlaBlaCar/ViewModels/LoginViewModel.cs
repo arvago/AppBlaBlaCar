@@ -1,4 +1,5 @@
-﻿using AppBlaBlaCar.Views;
+﻿using AppBlaBlaCar.Models;
+using AppBlaBlaCar.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,6 +9,8 @@ namespace AppBlaBlaCar.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {
+        public UserModel userActual;
+
         Command _LoginCommand;
         public Command LoginCommand => _LoginCommand ?? (_LoginCommand = new Command(OnLoginClicked));
 

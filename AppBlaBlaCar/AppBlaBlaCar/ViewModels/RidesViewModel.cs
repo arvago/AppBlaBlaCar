@@ -13,6 +13,8 @@ namespace AppBlaBlaCar.ViewModels
     {
         private static RidesViewModel instance;
 
+        UserModel actualUser;
+
         //CREAMOS NUESTRO COMANDO QUE SE UTILIZARA HACIENDO REFERENCIA A SU METODO
         Command _NewRideCommand;
         public Command NewRideCommand => _NewRideCommand ?? (_NewRideCommand = new Command(NewRideAction));
@@ -46,9 +48,10 @@ namespace AppBlaBlaCar.ViewModels
         }
 
         //CARGA LA LISTA DESDE EL PRINCIPIO DE LA APLICACION
-        public RidesViewModel()
+        public RidesViewModel(/*UserModel user*/)
         {
             instance = this;
+            //actualUser = user;
             LoadRides();
         }
         //METODO UNICO PARA RETORNAR NUESTRA INSTANCIA
@@ -60,7 +63,7 @@ namespace AppBlaBlaCar.ViewModels
         //METODO PARA OBTENER TODOS LOS VIAJES
         public async void LoadRides()
         {
-            ResponseModel response = await new ApiService().GetDataAsync("Rides");
+            ResponseModel response = await new ApiService().GetDataAsync("Ride");
             if (response == null || !response.IsSuccess)
             {
                 IsBusy = false;
@@ -74,7 +77,7 @@ namespace AppBlaBlaCar.ViewModels
         //METODO PARA INVOCAR AL DETAILVIEW PARA AGREGAR UN VIAJE
         private void NewRideAction()
         {
-            Application.Current.MainPage.Navigation.PushAsync(new RideDetailView());
+            Application.Current.MainPage.Navigation.PushAsync(new RideDetailView(/*actualUser*/));
 
         }
 

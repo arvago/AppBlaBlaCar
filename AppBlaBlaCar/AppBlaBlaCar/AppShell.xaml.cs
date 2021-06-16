@@ -14,6 +14,7 @@ namespace AppBlaBlaCar
             
             Routing.RegisterRoute(nameof(LoginView), typeof(LoginView));
             Routing.RegisterRoute(nameof(RidesView), typeof(RidesView));
+            Routing.RegisterRoute(nameof(RideDetailView), typeof(RideDetailView));
             Routing.RegisterRoute(nameof(UserDetailView), typeof(UserDetailView));
         }
 

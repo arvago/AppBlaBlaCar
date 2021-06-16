@@ -13,7 +13,7 @@ namespace AppBlaBlaCar.Triggers
             bool isNumeric = int.TryParse(sender.Text, out n);
             if (string.IsNullOrWhiteSpace(sender.Text) || !isNumeric)
             {
-                sender.Text = "1"; //Texto anterior
+                sender.Text = ""; //Texto anterior
             }
             else
             {

@@ -4,6 +4,7 @@ using AppBlaBlaCar.Views;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace AppBlaBlaCar.ViewModels
@@ -17,6 +18,8 @@ namespace AppBlaBlaCar.ViewModels
         public Command DeleteCommand => deleteCommand ?? (deleteCommand = new Command(DeleteAction));
         Command _MapCommand;
         public Command MapCommand => _MapCommand ?? (_MapCommand = new Command(MapAction));
+        Command _GetLocationCommand;
+        public Command GetLocationCommand => _GetLocationCommand ?? (_GetLocationCommand = new Command(GetLocationAction));
 
         //SE CREAN LOS CONSTRUCTORES PARA PODER SETEAR LOS VALORES
         RideModel rideSelected;
@@ -27,7 +30,7 @@ namespace AppBlaBlaCar.ViewModels
         }
 
         int _RideID;
-        int _DriverID;
+        int _DriverID = 1;
 
         string _OriginName;
         public string OriginName
@@ -78,8 +81,8 @@ namespace AppBlaBlaCar.ViewModels
             set => SetProperty(ref _Date, value);
         }
 
-        string _Time;
-        public string Time
+        TimeSpan _Time;
+        public TimeSpan Time
         {
             get => _Time;
             set => SetProperty(ref _Time, value);
@@ -100,10 +103,10 @@ namespace AppBlaBlaCar.ViewModels
         }
 
         //CONSTRUCTOR QUE SE INVOCA AL QUERER CREAR UNA NUEVA GASOLINERA
-        public RideDetailViewModel(/*int IDDriver*/)
+        public RideDetailViewModel(/*UserModel user*/)
         {
             RideSelected = new RideModel();
-            //_DriverID = IDDriver;
+            //_DriverID = user.IDUser;
         }
 
         //CONSTRUCTOR QUE SE INVOCA AL QUERER EDITAR/ACTUALIZAR LA INFO DE UNA GASOLINERA
@@ -111,6 +114,7 @@ namespace AppBlaBlaCar.ViewModels
         {
             RideSelected = rideSelected;
 
+            int hourPosition = 1;
             _RideID = rideSelected.IDRide;
             _DriverID = rideSelected.IDDriver;            
             OriginName = rideSelected.OriginStr;
@@ -119,10 +123,13 @@ namespace AppBlaBlaCar.ViewModels
             DestinationName = rideSelected.DestinationStr;
             LatitudeDes = rideSelected.DestinationLat;
             LongitudeDes = rideSelected.DestinationAlt;
-            //Date =
-            //Time =
+            Date = Convert.ToString(rideSelected.Date);
             Passengers = rideSelected.Passengers;
             Price = rideSelected.Price;
+
+            string[] arrayFecha = Date.Split(' ');
+            string hora = arrayFecha[hourPosition];
+            Time = TimeSpan.Parse(hora);            
         }
 
         private async void SaveAction()
@@ -130,8 +137,11 @@ namespace AppBlaBlaCar.ViewModels
             ResponseModel response;
             try
             {
-                DateTime fecha = Convert.ToDateTime(Date);
-                DateTime hora = Convert.ToDateTime(Time);
+                int datePosition = 0;
+                string fecha = Date;
+                string[] arrayFecha = fecha.Split(' ');
+                string hora = Convert.ToString(Time);
+                string fechaCorrecta = arrayFecha[datePosition] + " " + Time;
                 RideModel ride = new RideModel
                 {
                     IDRide = _RideID,
@@ -143,7 +153,7 @@ namespace AppBlaBlaCar.ViewModels
                     DestinationLat = LatitudeDes,
                     DestinationAlt = LongitudeDes,
                     Passengers = Passengers,
-                    Date = fecha.AddHours(hora.Hour).AddMinutes(hora.Minute).AddSeconds(hora.Second),
+                    Date = Convert.ToDateTime(fechaCorrecta),
                     Price = Price
                 };
                 if (ride.IDRide > 0)
@@ -158,7 +168,7 @@ namespace AppBlaBlaCar.ViewModels
                 }
                 if (response == null || !response.IsSuccess)
                 {
-                    await Application.Current.MainPage.DisplayAlert("AppPets", $"Error al cargar los viajes {response.Message}", "Ok");
+                    await Application.Current.MainPage.DisplayAlert("AppBlaBlaCar", $"Error al cargar los viajes {response.Message}", "Ok");
                     return;
                 }
 
@@ -211,6 +221,42 @@ namespace AppBlaBlaCar.ViewModels
                     Price = Price
                 })
             );
+        }
+
+        private async void GetLocationAction()
+        {
+            try
+            {
+                LatitudeOrg = LongitudeOrg = 0;
+                var location = await Geolocation.GetLastKnownLocationAsync();
+
+                if (location != null)
+                {
+                    // Console.WriteLine($"Latitude: {location.Latitude}, Longitude: {location.Longitude}, Altitude: {location.Altitude}");
+                    LatitudeOrg = location.Latitude;
+                    LongitudeOrg = location.Longitude;
+                }
+            }
+            catch (FeatureNotSupportedException fnsEx)
+            {
+                // Handle not supported on device exception
+                await Application.Current.MainPage.DisplayAlert("AppBlaBlaCar", $"El GPS no está soportado en el dispositivo ({fnsEx.Message})", "Ok");
+            }
+            catch (FeatureNotEnabledException fneEx)
+            {
+                // Handle not enabled on device exception
+                await Application.Current.MainPage.DisplayAlert("AppBlaBlaCar", $"El GPS no está activiado en el dispositivo ({fneEx.Message})", "Ok");
+            }
+            catch (PermissionException pEx)
+            {
+                // Handle permission exception
+                await Application.Current.MainPage.DisplayAlert("AppBlaBlaCar", $"No se pudo obtener el permiso para las coordenadas ({pEx.Message})", "Ok");
+            }
+            catch (Exception ex)
+            {
+                // Unable to get location
+                await Application.Current.MainPage.DisplayAlert("AppBlaBlaCar", $"Se generó un error al obtener las coordenadas del dispositivo ({ex.Message})", "Ok");
+            }
         }
     }
 }

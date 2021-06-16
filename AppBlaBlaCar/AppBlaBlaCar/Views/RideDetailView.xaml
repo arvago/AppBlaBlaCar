@@ -18,6 +18,7 @@
                 x:Name="txtOrigen"
                 Placeholder="Origen" 
                 Text="{Binding OriginName}"/>
+            <Label Text="Coordenadas" XAlign="Start" FontSize="Micro"/>
             <Entry 
                     x:Name="txtOrigenLat"
                     Placeholder="Latitud" 
@@ -26,25 +27,29 @@
                     x:Name="txtOrigenAlt"
                     Placeholder="Longitud" 
                     Text="{Binding LongitudeOrg}"/>
+            <Button
+                Text="Obtener Ubicación"
+                Command="{Binding GetLocationCommand}"/>
             <Label Text="------------" XAlign="Center" FontSize="Default"/>
             <Entry 
                 x:Name="txtDestino"
                 Placeholder="Destino" 
                 Text="{Binding DestinationName}"/>
+            <Label Text="Coordenadas" XAlign="Start" FontSize="Micro"/>
             <Entry 
-                    x:Name="txtOrigenLat"
+                    x:Name="txtDestinationLat"
                     Placeholder="Latitud" 
                     Text="{Binding LatitudeDes}"/>
             <Entry 
-                    x:Name="txtOrigenAlt"
+                    x:Name="txtDestinationAlt"
                     Placeholder="Longitud" 
                     Text="{Binding LongitudeDes}"/>
             <Label Text="INFORMACIÓN DEL VIAJE" XAlign="Center" FontSize="Large"/>
             <Label Text="Fecha" XAlign="Start" FontSize="Small"/>
-            <DatePicker x:Name="DatePicker" Date="{Binding Date}" Format="YYYY-MM-dd"></DatePicker>
+            <DatePicker x:Name="DatePicker" Date="{Binding Date}" Format="yyyy'-'MM'-'dd"></DatePicker>
             <Label Text="Hora" XAlign="Start" FontSize="Small"/>
-            <TimePicker  x:Name="TimePicker" Time="{Binding Time}"/>
-            <Label Text="------------" XAlign="Center" FontSize="Default"/>
+            <TimePicker  x:Name="TimePicker" Time="{Binding Time}"  />
+            <Label Text="Pasajeros" XAlign="Start" FontSize="Micro"/>
             <Entry 
                 x:Name="txtPassengers"
                 Placeholder="Pasajeros" 
@@ -63,7 +68,7 @@
                 Minimum="1"
                 Maximum="20"
                 Value="{Binding Passengers}"/>
-            <Label Text="------------" XAlign="Center" FontSize="Default"/>
+            <Label Text="Precio" XAlign="Start" FontSize="Micro"/>
             <Entry 
                  x:Name="txtPrice"
                 Placeholder="Precio" 
@@ -80,7 +85,7 @@
                  x:Name="stpPrice"
                 Increment="1"
                 Minimum="1"
-                Maximum="20"
+                
                 Value="{Binding Price}"/>            
         </StackLayout>
     </ScrollView>
