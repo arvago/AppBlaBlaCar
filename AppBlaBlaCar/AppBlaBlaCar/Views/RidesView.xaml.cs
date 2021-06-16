@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AppBlaBlaCar.Models;
+using AppBlaBlaCar.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +17,8 @@ namespace AppBlaBlaCar.Views
         public RidesView()
         {
             InitializeComponent();
+            BindingContext = new RidesViewModel();
         }
+
     }
 }

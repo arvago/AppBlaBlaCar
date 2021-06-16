@@ -15,6 +15,7 @@ namespace AppBlaBlaCar.Views
         public UserDetailView()
         {
             InitializeComponent();
+            BindingContext = new UserDetailView();
         }
     }
 }

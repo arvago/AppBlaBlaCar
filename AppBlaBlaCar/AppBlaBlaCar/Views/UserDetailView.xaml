@@ -18,40 +18,33 @@
                     Source="{Binding Picture}"/>
                 <Entry 
                     Placeholder="Nombre del Usuario" 
-                    Text="{Binding UserSelected.Name}"/>
+                    Text="{Binding Name}"/>
                 <Entry 
                     Placeholder="Email" 
-                    Text="{Binding UserSelected.Email}"/>
+                    Text="{Binding Email}"/>
                 <Entry 
                     IsPassword="True"
                     Placeholder="Password" 
-                    Text="{Binding UserSelected.Password}"/>
+                    Text="{Binding Password}"/>
 
-                <Switch x:Name="DriverSwitch" />
-                <Label Text="Driver mode">
-                    <Label.Triggers>
-                        <DataTrigger TargetType="Driver"
-                     Binding="{Binding Source={x:Reference styleSwitch}, Path=IsToggled}"
-                     Value="true">
-                            <Setter Property="FontAttributes"
-                    Value="Italic, Bold" />
-                            <Setter Property="FontSize"
-                    Value="Large" />
-                        </DataTrigger>
-                    </Label.Triggers>
-                </Label>
-
-                <Label Text="UBICACIÓN" XAlign="Center" FontSize="Large" Margin="7,0,0,0"/>
-                <Entry 
-                    Placeholder="Latitud" 
-                    Text="{Binding Latitude}"/>
-                <Entry 
-                    Placeholder="Longitud" 
-                    Text="{Binding Longitude}"/>
-                <Button
-                    Text="Obtener Ubicación"
-                    Command="{Binding GetLocationCommand}"/>
-
+                <Switch IsToggled="False">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="Driver Mode">
+                            <VisualState x:Name="On">
+                                <VisualState.Setters>
+                                    <Setter Property="ThumbColor"
+                            Value="MediumSpringGreen" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Off">
+                                <VisualState.Setters>
+                                    <Setter Property="ThumbColor"
+                            Value="Red" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </Switch>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

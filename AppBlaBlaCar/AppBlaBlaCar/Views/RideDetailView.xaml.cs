@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AppBlaBlaCar.Models;
+using AppBlaBlaCar.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +14,6 @@ namespace AppBlaBlaCar.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RideDetailView : ContentPage
     {
-        public RideDetailView()
-        {
-            InitializeComponent();
-        }
+        
     }
 }
