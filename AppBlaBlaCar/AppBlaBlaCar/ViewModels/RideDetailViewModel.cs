@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AppBlaBlaCar.Models;
+using AppBlaBlaCar.Services;
+using AppBlaBlaCar.Views;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using Xamarin.Forms;
