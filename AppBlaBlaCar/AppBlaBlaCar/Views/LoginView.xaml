@@ -4,9 +4,7 @@
              x:Class="AppBlaBlaCar.Views.LoginView"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             Shell.NavBarIsVisible="False"             
-             Shell.FlyoutBehavior="Disabled">
+             mc:Ignorable="d">
     <ContentPage.Content>
         <StackLayout Padding="30,30,30,30" VerticalOptions="Center">
             <Image Source="logo.png"/>

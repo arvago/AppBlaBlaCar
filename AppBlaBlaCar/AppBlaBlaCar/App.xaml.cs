@@ -13,7 +13,7 @@ namespace AppBlaBlaCar
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            MainPage = new NavigationPage(new LoginView());
         }
 
         protected override void OnStart()

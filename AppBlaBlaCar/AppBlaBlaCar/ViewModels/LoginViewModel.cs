@@ -37,6 +37,13 @@ namespace AppBlaBlaCar.ViewModels
             set => SetProperty(ref _MessageLabel, value);
         }
 
+        UserModel _userFinal;
+        public UserModel userFinal
+        {
+            get => _userFinal;
+            set => SetProperty(ref _userFinal, value);
+        }
+
         private async void Register(object obj)
         {
             // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
@@ -48,7 +55,7 @@ namespace AppBlaBlaCar.ViewModels
 
         public LoginViewModel()
         {
-
+            userFinal = new UserModel();
         }
 
         private async void OnLoginClicked(object obj)
@@ -74,18 +81,16 @@ namespace AppBlaBlaCar.ViewModels
 
             if (response.IsSuccess)
             {
-                UserModel userFinal = JsonConvert.DeserializeObject<UserModel>(response.Result.ToString());                
+                userFinal = JsonConvert.DeserializeObject<UserModel>(response.Result.ToString());                
                 int id = userFinal.IDUser;
-                await Application.Current.MainPage.Navigation.PopAsync();
-                //await Application.Current.MainPage.Navigation.PushAsync(new RidesView(id, userFinal));
+                
+                await Application.Current.MainPage.Navigation.PushAsync(new RidesView(id, userFinal));
+                //await Application.Current.MainPage.Navigation.PopAsync();
             }
             else
             {
                 MessageLabel = response.Message;
-            }
-            
-            await Application.Current.MainPage.Navigation.PopAsync();
-            
+            }                     
         }
     }
 }

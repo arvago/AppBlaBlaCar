@@ -54,6 +54,7 @@ namespace AppBlaBlaCar.ViewModels
             instance = this;
             actualUserID = ID;
             actualUser = user;
+            
             addButtonStatus = (actualUser.Role == "Driver") ? true : false;
             LoadRides();
         }
@@ -84,7 +85,7 @@ namespace AppBlaBlaCar.ViewModels
 
         private void SelectAction()
         {
-            Application.Current.MainPage.Navigation.PushModalAsync(new RideDetailView(rideSelected));
+            Application.Current.MainPage.Navigation.PushAsync(new RideDetailView(rideSelected));
 
         }
 

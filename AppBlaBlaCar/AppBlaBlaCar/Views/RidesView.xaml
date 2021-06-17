@@ -34,7 +34,7 @@
                             <StackLayout Orientation="Horizontal"
                                          Grid.Column="5">
                                 <Label
-                                            Text="{Binding DestinationStr}"
+                                            Text="{Binding DestinationStr, StringFormat='Destino: {0}'}"
                                             XAlign="Center"/>
                             </StackLayout>
                         </Frame>
