@@ -132,7 +132,7 @@ namespace AppBlaBlaCarWebApi.Models
                 using (SqlConnection conn = new SqlConnection(ConnectionString))
                 {
                     conn.Open();
-                    string tsql = "INSERT INTO Ride (IDDriver, OriginStr, DestinationStr, OriginLat, OriginAlt, DestinationLat, DestinationAlt, Passengers, Date, Price) VALUES(@IDDriver, @OriginStr, @DestinationStr, @OriginLat, @OriginAlt, @DestinationLat, @DestinationAlt, @Passengers, @Date, @Price); SELECT LAST_INSERT_ID();";
+                    string tsql = "INSERT INTO Ride (IDDriver, OriginStr, DestinationStr, OriginLat, OriginAlt, DestinationLat, DestinationAlt, Passengers, Date, Price) VALUES(@IDDriver, @OriginStr, @DestinationStr, @OriginLat, @OriginAlt, @DestinationLat, @DestinationAlt, @Passengers, @Date, @Price); SELECT SCOPE_IDENTITY();";
                     using (SqlCommand cmd = new SqlCommand(tsql, conn))
                     {
                         cmd.CommandType = System.Data.CommandType.Text;

@@ -28,7 +28,7 @@
                     Text="{Binding UserSelected.Password}"/>
 
                 <Switch x:Name="DriverSwitch" />
-                <Label Text="Driver mode">
+                <!--<Label Text="Driver mode">
                     <Label.Triggers>
                         <DataTrigger TargetType="Driver"
                      Binding="{Binding Source={x:Reference styleSwitch}, Path=IsToggled}"
@@ -39,7 +39,7 @@
                     Value="Large" />
                         </DataTrigger>
                     </Label.Triggers>
-                </Label>
+                </Label>-->
 
                 <Label Text="UBICACIÓN" XAlign="Center" FontSize="Large" Margin="7,0,0,0"/>
                 <Entry 
