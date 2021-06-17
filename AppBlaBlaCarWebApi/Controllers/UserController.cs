@@ -28,6 +28,13 @@ namespace AppBlaBlaCarWebApi.Controllers
         }
 
         // POST api/<UserController>
+        [HttpPatch]
+        public ResponseModel Patch([FromBody] UserModel user)
+        {
+            return user.Login(user.Email, user.Password);
+        }
+
+        // POST api/<UserController>
         [HttpPost]
         public ResponseModel Post([FromBody] UserModel user)
         {

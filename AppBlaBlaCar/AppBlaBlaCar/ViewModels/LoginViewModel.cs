@@ -12,7 +12,15 @@ namespace AppBlaBlaCar.ViewModels
         public UserModel userActual;
 
         Command _LoginCommand;
+        Command _RegisterCommand;
         public Command LoginCommand => _LoginCommand ?? (_LoginCommand = new Command(OnLoginClicked));
+        public Command RegisterCommand => _RegisterCommand ?? (_RegisterCommand = new Command(Register));
+
+        private async void Register(object obj)
+        {
+            // Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
+            await Application.Current.MainPage.Navigation.PushAsync(new UserDetailView());
+        }
 
         public LoginViewModel()
         {

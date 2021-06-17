@@ -7,8 +7,19 @@
              mc:Ignorable="d"
              Shell.NavBarIsVisible="False">
     <ContentPage.Content>
-            <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
-                <Button VerticalOptions="Center" Text="Login" Command="{Binding LoginCommand}"/>
-            </StackLayout>
+        <StackLayout Padding="30,30,30,30" VerticalOptions="Center">
+            <Image Source="logo.png"/>
+            <Entry 
+                    Placeholder="Correo" 
+                    Text="{Binding Email}"
+                    Margin="0,25,0,0"/>
+            <Entry 
+                    Placeholder="Contraseña" 
+                    Text="{Binding Contraseña}"
+                    IsPassword="True"
+                    Margin="0,0,0,25"/>
+            <Button VerticalOptions="Center" Text="Login" Command="{Binding LoginCommand}"/>
+            <Button VerticalOptions="Center" Text="Registrar" Command="{Binding RegisterCommand}"/>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

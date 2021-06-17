@@ -9,9 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppBlaBlaCar.Android", "App
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppBlaBlaCar.iOS", "AppBlaBlaCar\AppBlaBlaCar.iOS\AppBlaBlaCar.iOS.csproj", "{6F3F681C-28D0-4512-9F9D-22D87EFA6F11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppBlaBlaCar", "AppBlaBlaCar\AppBlaBlaCar\AppBlaBlaCar.csproj", "{53416952-063F-4C8F-A24F-34310E54183B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppBlaBlaCar", "AppBlaBlaCar\AppBlaBlaCar\AppBlaBlaCar.csproj", "{53416952-063F-4C8F-A24F-34310E54183B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppBlaBlaCarWebApi", "AppBlaBlaCarWebApi\AppBlaBlaCarWebApi.csproj", "{C2F4732B-83A8-4493-8747-37DA9B973C47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppBlaBlaCarWebApi", "AppBlaBlaCarWebApi\AppBlaBlaCarWebApi.csproj", "{C2F4732B-83A8-4493-8747-37DA9B973C47}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
