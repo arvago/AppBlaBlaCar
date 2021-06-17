@@ -16,6 +16,7 @@ namespace AppBlaBlaCar
             Routing.RegisterRoute(nameof(RidesView), typeof(RidesView));
             Routing.RegisterRoute(nameof(RideDetailView), typeof(RideDetailView));
             Routing.RegisterRoute(nameof(UserDetailView), typeof(UserDetailView));
+            Routing.RegisterRoute(nameof(RidesMapsView), typeof(RidesMapsView));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)

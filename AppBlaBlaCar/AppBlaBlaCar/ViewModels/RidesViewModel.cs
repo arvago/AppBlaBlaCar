@@ -19,13 +19,6 @@ namespace AppBlaBlaCar.ViewModels
         Command _NewRideCommand;
         public Command NewRideCommand => _NewRideCommand ?? (_NewRideCommand = new Command(NewRideAction));
 
-        List<RideModel> rides;
-        public List<RideModel> Rides
-        {
-            get => rides;
-            set => SetProperty(ref rides, value);
-        }
-
         List<RideModel> _RideList;
         public List<RideModel> RideList
         {
@@ -66,12 +59,10 @@ namespace AppBlaBlaCar.ViewModels
             ResponseModel response = await new ApiService().GetDataAsync("Ride");
             if (response == null || !response.IsSuccess)
             {
-                IsBusy = false;
                 await Application.Current.MainPage.DisplayAlert("AppBlaBlaCar", $"Error al cargar los viajes{response.Message}", "Ok");
                 return;
             }
             RideList = JsonConvert.DeserializeObject<List<RideModel>>(response.Result.ToString());
-            IsBusy = false;
         }
 
         //METODO PARA INVOCAR AL DETAILVIEW PARA AGREGAR UN VIAJE

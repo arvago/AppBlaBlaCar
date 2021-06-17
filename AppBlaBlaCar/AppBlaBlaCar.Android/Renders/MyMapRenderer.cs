@@ -36,7 +36,6 @@ namespace AppBlaBlaCar.Droid.Renders
             if (e.NewElement != null)
             {
                 this.Ride = (e.NewElement as MyMap).Ride;
-                Control.GetMapAsync(this);
             }
 
         }
@@ -72,21 +71,16 @@ namespace AppBlaBlaCar.Droid.Renders
             var inflater = Android.App.Application.Context.GetSystemService(Context.LayoutInflaterService) as Android.Views.LayoutInflater;
             if (inflater != null)
             {
-                //Android.Views.View viewOrg;
                 Android.Views.View viewDes;
-
-                //viewOrg = inflater.Inflate(Resource.Layout.MapWindowOrg, null);
                 viewDes = inflater.Inflate(Resource.Layout.MapWindowDes, null);
-                //var infoNameOrg = viewOrg.FindViewById<TextView>(Resource.Id.MapWindowName);
                 var infoNameDes = viewDes.FindViewById<TextView>(Resource.Id.MapWindowName);
 
-                if (/*(infoNameOrg != null) || */(infoNameDes != null))
+                if (infoNameDes != null)
                 {
-                    //infoNameOrg.Text = Ride.OriginStr;
                     infoNameDes.Text = Ride.OriginStr;
                 }
-                //return (viewOrg);
-                return (viewDes);
+                
+                return viewDes;
             }
             return null;
         }    

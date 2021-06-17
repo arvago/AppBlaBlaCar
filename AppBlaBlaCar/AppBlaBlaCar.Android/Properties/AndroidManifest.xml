@@ -4,7 +4,7 @@
     <application android:label="AppBlaBlaCar.Android" 
                  android:theme="@style/MainTheme"
                  android:usesCleartextTraffic="true">
-      <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyBUyh3GhUymcM-zdR2URrQuN7wnqiEW3-s" />
+      <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyAnoOIzm7sQme7P8dFVS38n5YQvUzQftBI" />
       <provider android:name="androidx.core.content.FileProvider"
           android:authorities="${applicationId}.fileprovider"
           android:exported="false"

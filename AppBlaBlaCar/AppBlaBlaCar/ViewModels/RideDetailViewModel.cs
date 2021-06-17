@@ -203,8 +203,11 @@ namespace AppBlaBlaCar.ViewModels
 
         private void MapAction()
         {
-            DateTime fecha = Convert.ToDateTime(Date);
-            DateTime hora = Convert.ToDateTime(Time);
+            int datePosition = 0;
+            string fecha = Date;
+            string[] arrayFecha = fecha.Split(' ');
+            string hora = Convert.ToString(Time);
+            string fechaCorrecta = arrayFecha[datePosition] + " " + Time;
             Application.Current.MainPage.Navigation.PushAsync(
                 new RidesMapsView(new RideModel
                 {
@@ -217,7 +220,7 @@ namespace AppBlaBlaCar.ViewModels
                     DestinationLat = LatitudeDes,
                     DestinationAlt = LongitudeDes,
                     Passengers = Passengers,
-                    Date = fecha.AddHours(hora.Hour).AddMinutes(hora.Minute).AddSeconds(hora.Second),
+                    Date = Convert.ToDateTime(fechaCorrecta),
                     Price = Price
                 })
             );

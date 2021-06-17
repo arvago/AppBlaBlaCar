@@ -90,7 +90,7 @@ namespace AppBlaBlaCar.UWP.Renders
             }
         }
 
-        //METODO PARA MOSTRAR EL RECUADRO CON LA INFO DE LA GASOLINERA EN EL MAPA, AL DAR CLICK AL PIN
+        //METODO PARA MOSTRAR EL RECUADRO CON LA INFO EN EL MAPA, AL DAR CLICK AL PIN
         private void OnMapElementClick(MapControl sender, MapElementClickEventArgs args)
         {
             var mapicon = args.MapElements.FirstOrDefault(x => x is MapIcon) as MapIcon;
@@ -98,7 +98,7 @@ namespace AppBlaBlaCar.UWP.Renders
             {
                 if (!IsRideWindowVisible)
                 {
-                    //MANDA LOS DATOS DE LA GASOLINERA AL MAPWINDOW PARA MOSTRAR EL RECUEADRO CON LA INFO
+                    //MANDA LOS DATOS AL MAPWINDOW PARA MOSTRAR EL RECUEADRO CON LA INFO
                     if (RideWindow == null) RideWindow = new MapWindow(Ride);
                     var position = new BasicGeoposition
                     {
