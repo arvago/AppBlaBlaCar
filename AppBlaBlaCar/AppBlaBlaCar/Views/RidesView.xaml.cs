@@ -14,10 +14,10 @@ namespace AppBlaBlaCar.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RidesView : ContentPage
     {
-        public RidesView()
+        public RidesView(int actualUserID, UserModel actualUser)
         {
             InitializeComponent();
-            BindingContext = new RidesViewModel();
+            BindingContext = new RidesViewModel(actualUserID, actualUser);
         }
 
     }

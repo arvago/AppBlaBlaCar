@@ -13,6 +13,38 @@ namespace AppBlaBlaCar.Services
     {
         private string ApiUrl = "https://appblablacar.azurewebsites.net/";
 
+        public async Task<ResponseModel> PatchDataAsync(string controller, object data)
+        {
+            try
+            {
+                var serializeData = JsonConvert.SerializeObject(data);
+                var content = new StringContent(serializeData, Encoding.UTF8, "application/json");
+                var client = new HttpClient
+                {                    
+                    BaseAddress = new System.Uri(ApiUrl)
+                };
+
+                var response = await client.PatchAsync(controller, content);
+                var result = await response.Content.ReadAsStringAsync();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new ResponseModel
+                    {
+                        IsSuccess = false,
+                        Message = result
+                    };
+                }
+
+                return JsonConvert.DeserializeObject<ResponseModel>(result);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
         public async Task<ResponseModel> GetDataAsync(string controller)
         {
             try

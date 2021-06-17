@@ -14,13 +14,11 @@ namespace AppBlaBlaCar.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RideDetailView : ContentPage
     {
-        UserModel actualUser;
-        public RideDetailView(/*UserModel user*/)
+        public RideDetailView(int userID, UserModel user)
         {
             InitializeComponent();
-            //actualUser = user;
             //ENVIA Y OBTIENE LOS BINDINGS DEL VIEW MODEL
-            BindingContext = new RideDetailViewModel(/*actualUser*/);
+            BindingContext = new RideDetailViewModel(userID, user);
         }
 
         //CONSTRUCTOR QUE SE INVOCA PARA ACTUALIZAR UNA GASOLINERA

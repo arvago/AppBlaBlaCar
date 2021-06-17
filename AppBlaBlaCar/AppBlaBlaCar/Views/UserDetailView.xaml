@@ -2,50 +2,52 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="AppBlaBlaCar.Views.UserDetailView">
-    <ContentPage.Content>
-        <ScrollView>
-            <StackLayout Margin="15">
-                <Label Text="INFORMACIÓN USUARIO" XAlign="Center" FontSize="Large" Margin="7,0,0,0"/>
-                <Button
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Eliminar" Command="{Binding DeleteCommand}"/>
+        <ToolbarItem Text="Guardar" Command="{Binding SaveCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <ScrollView>
+        <StackLayout Margin="15">
+            <Label Text="INFORMACIÓN USUARIO" XAlign="Center" FontSize="Large" Margin="7,0,0,0"/>
+            <Label Text="Imagen" XAlign="Start" FontSize="Micro" Margin="7,0,0,0"/>
+            <Button
                     Text="Seleccionar Fotografía"
-                    Command="{Binding SelectPictureCommand}"/>
-                <Label Text="INFORMACIÓN DEL USUARIO" XAlign="Center" FontSize="Large"/>
-                
-                <Label Text="IMAGEN" XAlign="Center" FontSize="Large" Margin="7,0,0,0"/>
-                <Image 
+                    Command="{Binding SelectPictureCommand}"/>  
+            <Image 
                     HeightRequest="100"
                     WidthRequest="200"
-                    Source="{Binding Picture}"/>
-                <Entry 
+                    Source="{Binding ImgPicture}"/>
+            <Entry 
                     Placeholder="Nombre del Usuario" 
                     Text="{Binding Name}"/>
-                <Entry 
+            <Entry 
                     Placeholder="Email" 
                     Text="{Binding Email}"/>
-                <Entry 
+            <Entry 
                     IsPassword="True"
                     Placeholder="Password" 
                     Text="{Binding Password}"/>
-
-                <Switch IsToggled="False">
-                    <VisualStateManager.VisualStateGroups>
-                        <VisualStateGroup x:Name="Driver Mode">
-                            <VisualState x:Name="On">
-                                <VisualState.Setters>
-                                    <Setter Property="ThumbColor"
+            <Switch x:Name="switchRole" IsToggled="{Binding switchRole}" >
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="Driver Mode">
+                    <VisualState x:Name="On">
+                        <VisualState.Setters>
+                            <Setter Property="ThumbColor"
                             Value="MediumSpringGreen" />
-                                </VisualState.Setters>
-                            </VisualState>
-                            <VisualState x:Name="Off">
-                                <VisualState.Setters>
-                                    <Setter Property="ThumbColor"
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Off">
+                        <VisualState.Setters>
+                            <Setter Property="ThumbColor"
                             Value="Red" />
-                                </VisualState.Setters>
-                            </VisualState>
-                        </VisualStateGroup>
-                    </VisualStateManager.VisualStateGroups>
-                </Switch>
-            </StackLayout>
-        </ScrollView>
-    </ContentPage.Content>
+
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            </Switch>
+        </StackLayout>
+    </ScrollView>
 </ContentPage>

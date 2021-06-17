@@ -12,7 +12,7 @@
     </ContentPage.ToolbarItems>
 
     <ScrollView>
-        <StackLayout>
+        <StackLayout Margin="15">
             <Label Text="INFORMACIÓN DE LA RUTA" XAlign="Center" FontSize="Large"/>
             <Entry 
                 x:Name="txtOrigen"

@@ -14,6 +14,7 @@ namespace AppBlaBlaCar.ViewModels
         private static RidesViewModel instance;
 
         UserModel actualUser;
+        int actualUserID;
 
         //CREAMOS NUESTRO COMANDO QUE SE UTILIZARA HACIENDO REFERENCIA A SU METODO
         Command _NewRideCommand;
@@ -24,6 +25,13 @@ namespace AppBlaBlaCar.ViewModels
         {
             get => _RideList;
             set => SetProperty(ref _RideList, value);
+        }
+
+        bool _addButtonStatus;
+        public bool addButtonStatus
+        {
+            get => _addButtonStatus;
+            set => SetProperty(ref _addButtonStatus, value);
         }
 
         RideModel rideSelected;
@@ -41,10 +49,12 @@ namespace AppBlaBlaCar.ViewModels
         }
 
         //CARGA LA LISTA DESDE EL PRINCIPIO DE LA APLICACION
-        public RidesViewModel(/*UserModel user*/)
+        public RidesViewModel(int ID, UserModel user)
         {
             instance = this;
-            //actualUser = user;
+            actualUserID = ID;
+            actualUser = user;
+            addButtonStatus = (actualUser.Role == "Driver") ? true : false;
             LoadRides();
         }
         //METODO UNICO PARA RETORNAR NUESTRA INSTANCIA
@@ -68,13 +78,13 @@ namespace AppBlaBlaCar.ViewModels
         //METODO PARA INVOCAR AL DETAILVIEW PARA AGREGAR UN VIAJE
         private void NewRideAction()
         {
-            Application.Current.MainPage.Navigation.PushAsync(new RideDetailView(/*actualUser*/));
+            Application.Current.MainPage.Navigation.PushAsync(new RideDetailView(actualUserID, actualUser));
 
         }
 
         private void SelectAction()
         {
-            Application.Current.MainPage.Navigation.PushAsync(new RideDetailView(rideSelected));
+            Application.Current.MainPage.Navigation.PushModalAsync(new RideDetailView(rideSelected));
 
         }
 

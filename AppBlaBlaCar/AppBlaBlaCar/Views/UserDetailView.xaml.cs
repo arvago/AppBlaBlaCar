@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AppBlaBlaCar.Models;
+using AppBlaBlaCar.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,7 +17,15 @@ namespace AppBlaBlaCar.Views
         public UserDetailView()
         {
             InitializeComponent();
-            BindingContext = new UserDetailView();
+            BindingContext = new UserDetailViewModel();
+        }
+
+        //CONSTRUCTOR QUE SE INVOCA PARA ACTUALIZAR UNA GASOLINERA
+        public UserDetailView(UserModel actualUser)
+        {
+            InitializeComponent();
+            //ENVIA Y OBTIENE LOS BINDINGS DEL VIEW MODEL
+            BindingContext = new UserDetailViewModel(actualUser);
         }
     }
 }

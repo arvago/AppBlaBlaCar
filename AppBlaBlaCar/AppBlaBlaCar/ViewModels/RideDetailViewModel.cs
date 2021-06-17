@@ -29,8 +29,9 @@ namespace AppBlaBlaCar.ViewModels
             set => SetProperty(ref rideSelected, value);
         }
 
+        UserModel userLogged;
         int _RideID;
-        int _DriverID = 1;
+        int _DriverID;
 
         string _OriginName;
         public string OriginName
@@ -103,10 +104,11 @@ namespace AppBlaBlaCar.ViewModels
         }
 
         //CONSTRUCTOR QUE SE INVOCA AL QUERER CREAR UNA NUEVA GASOLINERA
-        public RideDetailViewModel(/*UserModel user*/)
+        public RideDetailViewModel(int ID, UserModel user)
         {
             RideSelected = new RideModel();
-            //_DriverID = user.IDUser;
+            userLogged = user;
+            _DriverID = ID;
         }
 
         //CONSTRUCTOR QUE SE INVOCA AL QUERER EDITAR/ACTUALIZAR LA INFO DE UNA GASOLINERA
@@ -173,7 +175,7 @@ namespace AppBlaBlaCar.ViewModels
                 }
 
                 RidesViewModel.GetInstance().LoadRides();
-                await Application.Current.MainPage.Navigation.PopAsync();//LINEA PARA RECARGAR LOS DATOS GUARDADOS 
+                await Application.Current.MainPage.Navigation.PopAsync();
             }
             catch (Exception)
             {
