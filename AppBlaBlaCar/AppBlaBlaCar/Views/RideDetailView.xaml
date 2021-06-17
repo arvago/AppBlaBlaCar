@@ -17,43 +17,57 @@
             <Entry 
                 x:Name="txtOrigen"
                 Placeholder="Origen" 
+                IsEnabled="{Binding visible}"
                 Text="{Binding OriginName}"/>
             <Label Text="Coordenadas" XAlign="Start" FontSize="Micro"/>
             <Entry 
-                    x:Name="txtOrigenLat"
-                    Placeholder="Latitud" 
-                    Text="{Binding LatitudeOrg}"/>
+                x:Name="txtOrigenLat"
+                Placeholder="Latitud" 
+                IsEnabled="{Binding visible}"
+                Text="{Binding LatitudeOrg}"/>
             <Entry 
-                    x:Name="txtOrigenAlt"
-                    Placeholder="Longitud" 
-                    Text="{Binding LongitudeOrg}"/>
+                x:Name="txtOrigenAlt"
+                Placeholder="Longitud"              
+                IsEnabled="{Binding visible}"
+                Text="{Binding LongitudeOrg}"/>
             <Button
                 Text="Obtener Ubicación"
+                IsEnabled="{Binding visible}"
                 Command="{Binding GetLocationCommand}"/>
-            <Label Text="------------" XAlign="Center" FontSize="Default"/>
             <Entry 
                 x:Name="txtDestino"
                 Placeholder="Destino" 
+                IsEnabled="{Binding visible}"
                 Text="{Binding DestinationName}"/>
             <Label Text="Coordenadas" XAlign="Start" FontSize="Micro"/>
             <Entry 
-                    x:Name="txtDestinationLat"
-                    Placeholder="Latitud" 
-                    Text="{Binding LatitudeDes}"/>
+                x:Name="txtDestinationLat"
+                Placeholder="Latitud" 
+                IsEnabled="{Binding visible}"
+                Text="{Binding LatitudeDes}"/>
             <Entry 
-                    x:Name="txtDestinationAlt"
-                    Placeholder="Longitud" 
-                    Text="{Binding LongitudeDes}"/>
+                x:Name="txtDestinationAlt"
+                Placeholder="Longitud" 
+                IsEnabled="{Binding visible}"
+                Text="{Binding LongitudeDes}"/>
             <Label Text="INFORMACIÓN DEL VIAJE" XAlign="Center" FontSize="Large"/>
             <Label Text="Fecha" XAlign="Start" FontSize="Small"/>
-            <DatePicker x:Name="DatePicker" Date="{Binding Date}" Format="yyyy'-'MM'-'dd"></DatePicker>
+            <DatePicker 
+                x:Name="DatePicker" 
+                IsEnabled="{Binding visible}"
+                Date="{Binding Date}" 
+                Format="yyyy'-'MM'-'dd"></DatePicker>
             <Label Text="Hora" XAlign="Start" FontSize="Small"/>
-            <TimePicker  x:Name="TimePicker" Time="{Binding Time}"  />
+            <TimePicker  
+                x:Name="TimePicker" 
+                IsEnabled="{Binding visible}"
+                Time="{Binding Time}"  />
             <Label Text="Pasajeros" XAlign="Start" FontSize="Micro"/>
             <Entry 
                 x:Name="txtPassengers"
                 Placeholder="Pasajeros" 
                 Keyboard="Numeric" 
+                IsEnabled="{Binding visible}"
                 Text="{Binding Passengers}">
                 <Entry.Triggers>
                     <EventTrigger 
@@ -67,12 +81,14 @@
                 Increment="1"
                 Minimum="1"
                 Maximum="20"
+                IsEnabled="{Binding visible}"
                 Value="{Binding Passengers}"/>
             <Label Text="Precio" XAlign="Start" FontSize="Micro"/>
             <Entry 
                  x:Name="txtPrice"
                 Placeholder="Precio" 
                 Keyboard="Numeric" 
+                IsEnabled="{Binding visible}"
                 Text="{Binding Price}">
                 <Entry.Triggers>
                     <EventTrigger 
@@ -85,7 +101,7 @@
                  x:Name="stpPrice"
                 Increment="1"
                 Minimum="1"
-                
+                IsEnabled="{Binding visible}"
                 Value="{Binding Price}"/>            
         </StackLayout>
     </ScrollView>

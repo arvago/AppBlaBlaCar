@@ -102,13 +102,24 @@ namespace AppBlaBlaCar.ViewModels
             get => _Price;
             set => SetProperty(ref _Price, value);
         }
+        
+        bool _visible;
+        public bool visible
+        {
+            get => _visible;
+            set => SetProperty(ref _visible, value);
+        }
 
+       
         //CONSTRUCTOR QUE SE INVOCA AL QUERER CREAR UNA NUEVA GASOLINERA
         public RideDetailViewModel(int ID, UserModel user)
         {
             RideSelected = new RideModel();
             userLogged = user;
             _DriverID = ID;
+
+            visible = (userLogged.IDUser == _DriverID) ? false : true;
+           
         }
 
         //CONSTRUCTOR QUE SE INVOCA AL QUERER EDITAR/ACTUALIZAR LA INFO DE UNA GASOLINERA
