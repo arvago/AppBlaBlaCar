@@ -13,7 +13,7 @@
 
     <ScrollView>
         <StackLayout Margin="15">
-            <Label Text="INFORMACIÓN DE LA RUTA" XAlign="Center" FontSize="Large"/>
+            <Label Text="INFORMACIÓN DE LA RUTA" XAlign="Center" FontSize="Large" FontAttributes="Bold"/>
             <Entry 
                 x:Name="txtOrigen"
                 Placeholder="Origen" 
