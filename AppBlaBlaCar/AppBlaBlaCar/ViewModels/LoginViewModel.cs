@@ -73,7 +73,7 @@ namespace AppBlaBlaCar.ViewModels
                 };
                 response = await new ApiService().PatchDataAsync("User", user);
             }
-            catch (Exception ex)
+            catch 
             {
 
                 throw;
