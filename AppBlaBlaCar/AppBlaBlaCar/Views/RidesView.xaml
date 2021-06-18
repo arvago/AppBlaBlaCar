@@ -4,17 +4,23 @@
              x:Class="AppBlaBlaCar.Views.RidesView">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem>
+        <ToolbarItem
+            Text="Mi Cuenta"
+            Order="Secondary"
+            Command="{Binding UserCommand}">
             <ToolbarItem.IconImageSource>
                 <OnPlatform
                         x:TypeArguments="ImageSource">
                     <On
                             Platform="Android, UWP"
-                            Value="hamburger.png" />
+                            Value="user.png" />
                 </OnPlatform>
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
-        <ToolbarItem>
+        <ToolbarItem
+            Text="Logout"
+            Order="Secondary"
+            Command="{Binding LogoutCommand}">
             <ToolbarItem.IconImageSource>
                 <OnPlatform
                         x:TypeArguments="ImageSource">

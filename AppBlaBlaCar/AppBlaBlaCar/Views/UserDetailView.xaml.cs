@@ -20,7 +20,7 @@ namespace AppBlaBlaCar.Views
             BindingContext = new UserDetailViewModel();
         }
 
-        //CONSTRUCTOR QUE SE INVOCA PARA ACTUALIZAR UNA GASOLINERA
+        //CONSTRUCTOR QUE SE INVOCA PARA ACTUALIZAR EL USUARIO
         public UserDetailView(UserModel actualUser)
         {
             InitializeComponent();
