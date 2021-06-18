@@ -19,6 +19,10 @@ namespace AppBlaBlaCar.ViewModels
         //CREAMOS NUESTRO COMANDO QUE SE UTILIZARA HACIENDO REFERENCIA A SU METODO
         Command _NewRideCommand;
         public Command NewRideCommand => _NewRideCommand ?? (_NewRideCommand = new Command(NewRideAction));
+        Command _LogoutCommand;
+        public Command LogoutCommand => _LogoutCommand ?? (_LogoutCommand = new Command(LogoutAction));
+        Command _UserCommand;
+        public Command UserCommand => _UserCommand ?? (_UserCommand = new Command(UserAction));
 
         List<RideModel> _RideList;
         public List<RideModel> RideList
@@ -87,6 +91,16 @@ namespace AppBlaBlaCar.ViewModels
         {
             Application.Current.MainPage.Navigation.PushAsync(new RideDetailView(rideSelected, actualUser));
 
+        }
+
+        private void UserAction()
+        {
+            Application.Current.MainPage.Navigation.PushAsync(new UserDetailView(actualUser));
+        }
+
+        private void LogoutAction()
+        {
+            Application.Current.MainPage.Navigation.PopToRootAsync();
         }
 
     }

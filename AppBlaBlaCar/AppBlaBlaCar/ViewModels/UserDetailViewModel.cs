@@ -13,7 +13,8 @@ namespace AppBlaBlaCar.ViewModels
 {
     public class UserDetailViewModel : BaseViewModel
     {
-        byte[] ByteData;
+        
+        int _IDUser;
         string FileNameSelected = string.Empty;
 
         Command saveCommand;
@@ -30,7 +31,12 @@ namespace AppBlaBlaCar.ViewModels
             set => SetProperty(ref userSelected, value);
         }
 
-        int _IDUser;
+        byte[] _ByteData;
+        public byte[] ByteData
+        {
+            get => _ByteData;
+            set => SetProperty(ref _ByteData, value);
+        }
 
         bool _switchRole;
         public bool switchRole
@@ -89,12 +95,13 @@ namespace AppBlaBlaCar.ViewModels
         {
             UserSelected = userSelected;
             _IDUser = userSelected.IDUser;
-            Name = userSelected.Picture;
+            Name = userSelected.Name;
             Email = userSelected.Email;
             Password = userSelected.Password;
             Picture = userSelected.Picture;
             Role = userSelected.Role;
             switchRole = (Role == "Driver") ? true : false;
+            CargarImagen();
         }
 
         //METODO PARA SELECCIONAR UNA FOTO DEL DISPOSITIVO
@@ -133,15 +140,6 @@ namespace AppBlaBlaCar.ViewModels
             ResponseModel response;
             try
             {
-                if (ImgPicture != null && ByteData.Length > 0)
-                {
-                    Picture = await new AzureService().UploadFileAsync(AzureContainer.Image, new MemoryStream(ByteData));
-                }
-                else
-                {
-                    await Task.Delay(5000);
-                }
-
                 Role = (switchRole == false) ? "User" : "Driver";
 
                 UserModel user = new UserModel
@@ -155,24 +153,14 @@ namespace AppBlaBlaCar.ViewModels
                 };
                 if (user.IDUser > 0)
                 {
-                    //Actualizar
-                    if (ImgPicture != null && ByteData.Length > 0)
-                    {
-                        Picture = await new AzureService().UploadFileAsync(AzureContainer.Image, new MemoryStream(ByteData));
-                    }
-                    else
-                    {
-                        await Task.Delay(5000);
-                    }
+                    //Actualizar 
+                    user.Picture = await new AzureService().UploadFileAsync(AzureContainer.Image, new MemoryStream(ByteData));
                     response = await new ApiService().PutDataAsync("User", user);
+                    
                 }
                 else
                 {
                     //Insertar
-                    response = await new ApiService().PostDataAsync("User", user);
-                }
-                if (response == null || !response.IsSuccess)
-                {
                     if (ImgPicture != null && ByteData.Length > 0)
                     {
                         Picture = await new AzureService().UploadFileAsync(AzureContainer.Image, new MemoryStream(ByteData));
@@ -181,6 +169,11 @@ namespace AppBlaBlaCar.ViewModels
                     {
                         await Task.Delay(5000);
                     }
+                    response = await new ApiService().PostDataAsync("User", user);
+                }
+
+                if (response == null || !response.IsSuccess)
+                {
                     await Application.Current.MainPage.DisplayAlert("AppBlaBlaCar", $"Error al procesar el usuario {response.Message}", "Ok");
                     return;
                 }
@@ -191,7 +184,6 @@ namespace AppBlaBlaCar.ViewModels
             }
             catch (Exception exc)
             {
-                await Task.Delay(5000);
                 throw;
             }          
         }
@@ -205,7 +197,7 @@ namespace AppBlaBlaCar.ViewModels
                 {
                     response = await new ApiService().DeleteDataAsync("User", _IDUser);
                 }
-                await Application.Current.MainPage.Navigation.PopAsync();
+                await Application.Current.MainPage.Navigation.PopToRootAsync();
             }
             catch (Exception)
             {
@@ -229,15 +221,15 @@ namespace AppBlaBlaCar.ViewModels
             }
         }
 
-        private async void listViewFiles_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void CargarImagen()
         {
             try
             {
-                if (e.SelectedItem != null)
+                if (Picture != null)
                 {
                     FileNameSelected = Picture;
-                    var byteData = await new AzureService().GetFileAsync(AzureContainer.Image, FileNameSelected);
-                    var image = ImageSource.FromStream(() => new MemoryStream(byteData));
+                    ByteData = await new AzureService().GetFileAsync(AzureContainer.Image, FileNameSelected);
+                    var image = ImageSource.FromStream(() => new MemoryStream(ByteData));
                     ImgPicture = image;
                 }
             }
