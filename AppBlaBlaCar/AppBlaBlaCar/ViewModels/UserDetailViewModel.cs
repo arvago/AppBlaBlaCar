@@ -154,6 +154,7 @@ namespace AppBlaBlaCar.ViewModels
                 if (user.IDUser > 0)
                 {
                     //Actualizar 
+                    await new AzureService().DeleteFileAsync(AzureContainer.Image, FileNameSelected);
                     user.Picture = await new AzureService().UploadFileAsync(AzureContainer.Image, new MemoryStream(ByteData));
                     response = await new ApiService().PutDataAsync("User", user);
                     
@@ -163,7 +164,7 @@ namespace AppBlaBlaCar.ViewModels
                     //Insertar
                     if (ImgPicture != null && ByteData.Length > 0)
                     {
-                        Picture = await new AzureService().UploadFileAsync(AzureContainer.Image, new MemoryStream(ByteData));
+                        user.Picture = await new AzureService().UploadFileAsync(AzureContainer.Image, new MemoryStream(ByteData));
                     }
                     else
                     {
@@ -177,12 +178,11 @@ namespace AppBlaBlaCar.ViewModels
                     await Application.Current.MainPage.DisplayAlert("AppBlaBlaCar", $"Error al procesar el usuario {response.Message}", "Ok");
                     return;
                 }
-                await Application.Current.MainPage.Navigation.PopAsync();
                 int id = (int)(long)response.Result;
                 await Application.Current.MainPage.Navigation.PushAsync(new RidesView(id, user));
                 
             }
-            catch (Exception exc)
+            catch 
             {
                 throw;
             }          

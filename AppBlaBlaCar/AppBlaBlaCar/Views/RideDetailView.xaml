@@ -6,9 +6,7 @@
              Title="Detalle del Viaje">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Eliminar" Command="{Binding DeleteCommand}"/>
-        <ToolbarItem Text="Guardar" Command="{Binding SaveCommand}"/>
-        <ToolbarItem Text="Mapa" Command="{Binding MapCommand}"/>
+        <ToolbarItem Text="Mapa" Command="{Binding MapCommand}"/>        
     </ContentPage.ToolbarItems>
 
     <ScrollView>
@@ -102,7 +100,18 @@
                 Increment="1"
                 Minimum="1"
                 IsEnabled="{Binding visible}"
-                Value="{Binding Price}"/>            
+                Value="{Binding Price}"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Button Text="Eliminar" IsVisible="{Binding visible}" Command="{Binding DeleteCommand}" />
+                <Button Text="Guardar" IsVisible="{Binding visible}" Command="{Binding SaveCommand}" Grid.Column="1"/>
+            </Grid>            
         </StackLayout>
     </ScrollView>
 </ContentPage>

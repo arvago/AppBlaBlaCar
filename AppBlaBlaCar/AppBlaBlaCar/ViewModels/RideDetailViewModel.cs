@@ -149,7 +149,14 @@ namespace AppBlaBlaCar.ViewModels
             string hora = arrayFecha[hourPosition];
             Time = TimeSpan.Parse(hora);
 
-           visible = (_DriverID == userLogged.IDUser) ? true : false;
+            if(_DriverID == userLogged.IDUser && userLogged.Role == "Driver")
+            {
+                visible = true;
+            }
+            else
+            {
+                visible = false;
+            }
         }
 
         private async void SaveAction()

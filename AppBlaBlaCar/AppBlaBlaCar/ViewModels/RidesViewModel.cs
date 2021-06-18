@@ -57,6 +57,7 @@ namespace AppBlaBlaCar.ViewModels
         {
             instance = this;
             actualUserID = ID;
+            user.IDUser = ID;
             actualUser = user;
             
             addButtonStatus = (actualUser.Role == "Driver") ? true : false;

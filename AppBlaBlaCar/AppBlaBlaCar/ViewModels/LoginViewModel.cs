@@ -50,7 +50,9 @@ namespace AppBlaBlaCar.ViewModels
 
             await Application.Current.MainPage.Navigation.PopAsync();
             await Application.Current.MainPage.Navigation.PushAsync(new UserDetailView());
-            
+
+            Contraseña = "";
+            Email = "";
         }
 
         public LoginViewModel()
@@ -85,7 +87,9 @@ namespace AppBlaBlaCar.ViewModels
                 int id = userFinal.IDUser;
                 
                 await Application.Current.MainPage.Navigation.PushAsync(new RidesView(id, userFinal));
-                //await Application.Current.MainPage.Navigation.PopAsync();
+
+                Contraseña = "";
+                Email = "";
             }
             else
             {
