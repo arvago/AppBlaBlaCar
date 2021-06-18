@@ -79,13 +79,13 @@ namespace AppBlaBlaCar.ViewModels
         //METODO PARA INVOCAR AL DETAILVIEW PARA AGREGAR UN VIAJE
         private void NewRideAction()
         {
-            Application.Current.MainPage.Navigation.PushAsync(new RideDetailView(actualUserID, actualUser));
+            Application.Current.MainPage.Navigation.PushAsync(new RideDetailView(actualUserID));
 
         }
 
         private void SelectAction()
         {
-            Application.Current.MainPage.Navigation.PushAsync(new RideDetailView(rideSelected));
+            Application.Current.MainPage.Navigation.PushAsync(new RideDetailView(rideSelected, actualUser));
 
         }
 

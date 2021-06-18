@@ -29,9 +29,15 @@ namespace AppBlaBlaCar.ViewModels
             set => SetProperty(ref rideSelected, value);
         }
 
-        UserModel userLogged;
         int _RideID;
         int _DriverID;
+
+        UserModel _userLogged;
+        public UserModel userLogged
+        {
+            get => _userLogged;
+            set => SetProperty(ref _userLogged, value);
+        }
 
         string _OriginName;
         public string OriginName
@@ -111,19 +117,17 @@ namespace AppBlaBlaCar.ViewModels
         }
 
        
-        //CONSTRUCTOR QUE SE INVOCA AL QUERER CREAR UNA NUEVA GASOLINERA
-        public RideDetailViewModel(int ID, UserModel user)
+        //CONSTRUCTOR QUE SE INVOCA AL QUERER CREAR UN NUEVO VIAJE
+        public RideDetailViewModel(int ID)
         {
+           visible =  true ;
             RideSelected = new RideModel();
-            userLogged = user;
+            
             _DriverID = ID;
-
-            visible = (userLogged.IDUser == _DriverID) ? false : true;
-           
         }
 
         //CONSTRUCTOR QUE SE INVOCA AL QUERER EDITAR/ACTUALIZAR LA INFO DE UNA GASOLINERA
-        public RideDetailViewModel(RideModel rideSelected)
+        public RideDetailViewModel(RideModel rideSelected, UserModel actualUser)
         {
             RideSelected = rideSelected;
 
@@ -139,10 +143,13 @@ namespace AppBlaBlaCar.ViewModels
             Date = Convert.ToString(rideSelected.Date);
             Passengers = rideSelected.Passengers;
             Price = rideSelected.Price;
+            userLogged = actualUser;
 
             string[] arrayFecha = Date.Split(' ');
             string hora = arrayFecha[hourPosition];
-            Time = TimeSpan.Parse(hora);            
+            Time = TimeSpan.Parse(hora);
+
+           visible = (_DriverID == userLogged.IDUser) ? true : false;
         }
 
         private async void SaveAction()

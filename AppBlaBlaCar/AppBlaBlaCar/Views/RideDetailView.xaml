@@ -32,7 +32,7 @@
                 Text="{Binding LongitudeOrg}"/>
             <Button
                 Text="Obtener Ubicación"
-                IsEnabled="{Binding visible}"
+                IsVisible="{Binding visible}"
                 Command="{Binding GetLocationCommand}"/>
             <Entry 
                 x:Name="txtDestino"
