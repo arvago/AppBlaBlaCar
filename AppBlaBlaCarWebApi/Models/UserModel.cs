@@ -177,7 +177,7 @@ namespace AppBlaBlaCarWebApi.Models
                 using (SqlConnection conn = new SqlConnection(ConnectionString))
                 {
                     conn.Open();
-                    string tsql = "INSERT INTO Person (Name, Picture, Email, Password, Role) VALUES(@Name, @Picture, @Email, @Password, @Role); SELECT LAST_INSERT_ID();";
+                    string tsql = "INSERT INTO Person (Name, Picture, Email, Password, Role) VALUES(@Name, @Picture, @Email, @Password, @Role); SELECT SCOPE_IDENTITY();";
                     using (SqlCommand cmd = new SqlCommand(tsql, conn))
                     {
                         cmd.CommandType = System.Data.CommandType.Text;
